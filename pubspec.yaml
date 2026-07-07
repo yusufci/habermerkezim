@@ -91,7 +91,7 @@ dependencies:
   video_player: ^2.8.2
   
   # Audio Player (for podcasts)
-  just_audio: ^0.10.5
+  just_audio: ^0.10.6
   audio_service: ^0.18.12
   
   # YouTube Player
