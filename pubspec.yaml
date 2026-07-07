@@ -108,7 +108,7 @@ dependencies:
   flutter_cache_manager: ^3.4.1
   
   # Firebase
-  firebase_core: ^4.10.0
+  firebase_core: ^4.11.0
   firebase_auth: ^6.5.2
   cloud_firestore: ^6.5.0
   firebase_storage: ^13.4.2
