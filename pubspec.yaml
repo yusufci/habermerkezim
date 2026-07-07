@@ -119,7 +119,7 @@ dependencies:
   google_sign_in: ^7.2.0
   
   # Image Picker & Cropper (Avatar Upload)
-  image_picker: ^1.2.2
+  image_picker: ^1.2.3
   image_cropper: ^12.2.1
   
   # File System
