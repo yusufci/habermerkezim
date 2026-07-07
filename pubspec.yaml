@@ -78,7 +78,7 @@ dependencies:
   timezone: ^0.10.1
   
   # Android Widget Support
-  home_widget: ^0.8.1
+  home_widget: ^0.9.3
   
   # Lottie Animations
   lottie: ^3.3.3
