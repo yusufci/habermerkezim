@@ -88,7 +88,7 @@ dependencies:
   flutter_animate: ^4.5.0
   
   # Video Player
-  video_player: ^2.8.2
+  video_player: ^2.11.1
   
   # Audio Player (for podcasts)
   just_audio: ^0.10.5
