@@ -8,37 +8,38 @@ part of 'env.dart';
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
+// generated_from: .env
 final class _Env {
   static const List<int> _enviedkeyappName = <int>[
-    3341821500,
-    1179883450,
-    4094112297,
-    2067756030,
-    3682641817,
-    87592232,
-    173535869,
-    1952995313,
-    3367445990,
-    3715037669,
-    457910790,
-    183667143,
-    9072904,
+    371947699,
+    741760258,
+    2105036521,
+    542676708,
+    2034052410,
+    3725048825,
+    420301318,
+    1927173826,
+    3537259744,
+    3365398374,
+    1737077103,
+    2132707318,
+    1043352828,
   ];
 
   static const List<int> _envieddataappName = <int>[
-    3341821556,
-    1179883483,
-    4094112331,
-    2067755931,
-    3682641899,
-    87592200,
-    173535792,
-    1952995220,
-    3367445908,
-    3715037582,
-    457910883,
-    183667133,
-    9072993,
+    371947771,
+    741760355,
+    2105036427,
+    542676609,
+    2034052424,
+    3725048793,
+    420301387,
+    1927173799,
+    3537259666,
+    3365398285,
+    1737077002,
+    2132707212,
+    1043352725,
   ];
 
   static final String appName = String.fromCharCodes(
@@ -50,19 +51,19 @@ final class _Env {
   );
 
   static const List<int> _enviedkeyappVersion = <int>[
-    2675112147,
-    2115261781,
-    3583098083,
-    600544729,
-    2719595654,
+    710637549,
+    2523444766,
+    2288079580,
+    823816816,
+    1262706068,
   ];
 
   static const List<int> _envieddataappVersion = <int>[
-    2675112162,
-    2115261819,
-    3583098067,
-    600544759,
-    2719595702,
+    710637532,
+    2523444784,
+    2288079596,
+    823816798,
+    1262706084,
   ];
 
   static final String appVersion = String.fromCharCodes(
@@ -74,19 +75,19 @@ final class _Env {
   );
 
   static const List<int> _enviedkeydebugMode = <int>[
-    3643633773,
-    2912292696,
-    3595593120,
-    1904591243,
-    114759061,
+    1069646126,
+    422635799,
+    439893281,
+    1960849547,
+    3509452214,
   ];
 
   static const List<int> _envieddatadebugMode = <int>[
-    3643633675,
-    2912292665,
-    3595593164,
-    1904591352,
-    114759152,
+    1069646152,
+    422635894,
+    439893325,
+    1960849656,
+    3509452243,
   ];
 
   static final String debugMode = String.fromCharCodes(
@@ -98,13 +99,13 @@ final class _Env {
   );
 
   static const List<int> _enviedkeyrssCacheDurationMinutes = <int>[
-    2776431789,
-    383066155,
+    323089832,
+    375751035,
   ];
 
   static const List<int> _envieddatarssCacheDurationMinutes = <int>[
-    2776431772,
-    383066142,
+    323089817,
+    375750990,
   ];
 
   static final String rssCacheDurationMinutes = String.fromCharCodes(
@@ -120,13 +121,13 @@ final class _Env {
   );
 
   static const List<int> _enviedkeyrssRequestTimeoutSeconds = <int>[
-    1790214414,
-    834095386,
+    996151771,
+    93164204,
   ];
 
   static const List<int> _envieddatarssRequestTimeoutSeconds = <int>[
-    1790214463,
-    834095402,
+    996151786,
+    93164188,
   ];
 
   static final String rssRequestTimeoutSeconds = String.fromCharCodes(
@@ -142,17 +143,17 @@ final class _Env {
   );
 
   static const List<int> _enviedkeyanalyticsEnabled = <int>[
-    2618964477,
-    640768824,
-    3715910135,
-    2162297341,
+    1280771146,
+    384982172,
+    1730172974,
+    4257495709,
   ];
 
   static const List<int> _envieddataanalyticsEnabled = <int>[
-    2618964361,
-    640768842,
-    3715910018,
-    2162297240,
+    1280771134,
+    384982254,
+    1730173019,
+    4257495800,
   ];
 
   static final String analyticsEnabled = String.fromCharCodes(
@@ -166,17 +167,17 @@ final class _Env {
   );
 
   static const List<int> _enviedkeyfeatureGamification = <int>[
-    1123525350,
-    3300259491,
-    2226199766,
-    1826810521,
+    530181812,
+    2835292675,
+    618740501,
+    3679762839,
   ];
 
   static const List<int> _envieddatafeatureGamification = <int>[
-    1123525266,
-    3300259537,
-    2226199715,
-    1826810620,
+    530181824,
+    2835292785,
+    618740576,
+    3679762930,
   ];
 
   static final String featureGamification = String.fromCharCodes(
@@ -191,17 +192,17 @@ final class _Env {
   );
 
   static const List<int> _enviedkeyfeatureDarkMode = <int>[
-    3857099862,
-    4062457851,
-    1914589973,
-    1100728564,
+    1224772835,
+    4174835894,
+    3113140115,
+    658321121,
   ];
 
   static const List<int> _envieddatafeatureDarkMode = <int>[
-    3857099810,
-    4062457737,
-    1914590048,
-    1100728465,
+    1224772759,
+    4174835908,
+    3113140198,
+    658321028,
   ];
 
   static final String featureDarkMode = String.fromCharCodes(
@@ -215,17 +216,17 @@ final class _Env {
   );
 
   static const List<int> _enviedkeyfeatureNotifications = <int>[
-    2639652374,
-    3327118792,
-    3180493314,
-    986178462,
+    1986589865,
+    3242567192,
+    2245543020,
+    175104378,
   ];
 
   static const List<int> _envieddatafeatureNotifications = <int>[
-    2639652450,
-    3327118778,
-    3180493431,
-    986178555,
+    1986589917,
+    3242567274,
+    2245542937,
+    175104287,
   ];
 
   static final String featureNotifications = String.fromCharCodes(
@@ -241,17 +242,17 @@ final class _Env {
   );
 
   static const List<int> _enviedkeyfeatureOfflineMode = <int>[
-    1876635891,
-    3069808435,
-    2770757462,
-    4250938210,
+    881130718,
+    1258161905,
+    4231629759,
+    185641733,
   ];
 
   static const List<int> _envieddatafeatureOfflineMode = <int>[
-    1876635783,
-    3069808449,
-    2770757411,
-    4250938119,
+    881130666,
+    1258161795,
+    4231629770,
+    185641824,
   ];
 
   static final String featureOfflineMode = String.fromCharCodes(
