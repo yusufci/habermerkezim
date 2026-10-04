@@ -811,7 +811,7 @@ class _ModernIconButtonState extends State<ModernIconButton>
         theme.colorScheme.surfaceContainerHighest.withValues(alpha: 0.5);
     final isDisabled = widget.onPressed == null;
 
-    Widget button = AnimatedBuilder(
+    final Widget button = AnimatedBuilder(
       animation: _scaleAnimation,
       builder: (context, child) {
         return Transform.scale(scale: _scaleAnimation.value, child: child);

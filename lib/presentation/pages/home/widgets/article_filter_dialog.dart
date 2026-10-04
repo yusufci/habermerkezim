@@ -22,7 +22,6 @@ class _ArticleFilterDialogState extends ConsumerState<ArticleFilterDialog> {
   List<String> _selectedSources = [];
   List<String> _selectedCategories = [];
   bool? _isRead;
-  String? _searchQuery;
   final TextEditingController _searchController = TextEditingController();
   bool _initialized = false;
 
@@ -39,7 +38,6 @@ class _ArticleFilterDialogState extends ConsumerState<ArticleFilterDialog> {
           _selectedSources = List<String>.from(filter.selectedSources);
           _selectedCategories = List<String>.from(filter.selectedCategories);
           _isRead = filter.isRead;
-          _searchQuery = filter.searchQuery;
           _searchController.text = filter.searchQuery ?? '';
           _initialized = true;
         });
@@ -60,7 +58,6 @@ class _ArticleFilterDialogState extends ConsumerState<ArticleFilterDialog> {
       _selectedSources = List<String>.from(filter.selectedSources);
       _selectedCategories = List<String>.from(filter.selectedCategories);
       _isRead = filter.isRead;
-      _searchQuery = filter.searchQuery;
       _searchController.text = filter.searchQuery ?? '';
       _initialized = true;
     }
@@ -82,7 +79,10 @@ class _ArticleFilterDialogState extends ConsumerState<ArticleFilterDialog> {
               padding: const EdgeInsets.all(20),
               child: Row(
                 children: [
-                  Icon(Icons.filter_list_rounded, color: AppTheme.primaryBlue),
+                  const Icon(
+                    Icons.filter_list_rounded,
+                    color: AppTheme.primaryBlue,
+                  ),
                   const SizedBox(width: 12),
                   Expanded(
                     child: Text(
@@ -354,7 +354,7 @@ class _ArticleFilterDialogState extends ConsumerState<ArticleFilterDialog> {
       label: Text(label),
       onPressed: onTap,
       backgroundColor: AppTheme.primaryBlue.withValues(alpha: 0.1),
-      labelStyle: TextStyle(
+      labelStyle: const TextStyle(
         color: AppTheme.primaryBlue,
         fontWeight: FontWeight.w500,
       ),

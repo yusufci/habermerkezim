@@ -166,12 +166,6 @@ class ImagePrefetchService {
     }
   }
 
-  /// URL'yi kısalt (log için)
-  String _truncateUrl(String url) {
-    if (url.length <= 50) return url;
-    return '${url.substring(0, 25)}...${url.substring(url.length - 20)}';
-  }
-
   /// Belirli bir görselin cache'de olup olmadığını kontrol et
   Future<bool> isImageCached(String imageUrl) async {
     try {
@@ -245,7 +239,6 @@ mixin ImagePrefetchMixin<T extends StatefulWidget> on State<T> {
     if (_scrollController == null || _articles == null) return;
 
     final currentPosition = _scrollController!.position.pixels;
-    final maxExtent = _scrollController!.position.maxScrollExtent;
 
     // Scroll yönünü belirle
     _lastScrollDirection = currentPosition > _lastScrollPosition ? 1 : -1;
@@ -390,9 +383,9 @@ class _PrefetchDebugOverlayState extends State<PrefetchDebugOverlay> {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisSize: MainAxisSize.min,
               children: [
-                Text(
+                const Text(
                   'Prefetch Stats',
-                  style: const TextStyle(
+                  style: TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.bold,
                     fontSize: 12,

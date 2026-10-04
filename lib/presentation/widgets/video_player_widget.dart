@@ -136,9 +136,9 @@ class _VideoPlayerWidgetState extends State<VideoPlayerWidget> {
             size: 48,
           ),
           const SizedBox(height: 16),
-          Text(
+          const Text(
             'Video yüklenemedi',
-            style: const TextStyle(
+            style: TextStyle(
               color: Colors.white,
               fontSize: 16,
               fontWeight: FontWeight.bold,

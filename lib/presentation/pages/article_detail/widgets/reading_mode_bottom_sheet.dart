@@ -37,7 +37,7 @@ class ReadingModeBottomSheet extends ConsumerWidget {
             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
             child: Row(
               children: [
-                Icon(
+                const Icon(
                   Icons.chrome_reader_mode_rounded,
                   color: AppTheme.primaryBlue,
                 ),
@@ -112,7 +112,11 @@ class ReadingModeBottomSheet extends ConsumerWidget {
       children: [
         Row(
           children: [
-            Icon(Icons.text_fields, size: 20, color: AppTheme.primaryBlue),
+            const Icon(
+              Icons.text_fields,
+              size: 20,
+              color: AppTheme.primaryBlue,
+            ),
             const SizedBox(width: 8),
             Text(
               'Font Boyutu',
@@ -205,7 +209,7 @@ class ReadingModeBottomSheet extends ConsumerWidget {
       children: [
         Row(
           children: [
-            Icon(Icons.palette, size: 20, color: Colors.purple),
+            const Icon(Icons.palette, size: 20, color: Colors.purple),
             const SizedBox(width: 8),
             Text(
               'Arka Plan Rengi',
@@ -306,7 +310,11 @@ class ReadingModeBottomSheet extends ConsumerWidget {
       children: [
         Row(
           children: [
-            Icon(Icons.format_line_spacing, size: 20, color: Colors.orange),
+            const Icon(
+              Icons.format_line_spacing,
+              size: 20,
+              color: Colors.orange,
+            ),
             const SizedBox(width: 8),
             Text(
               'Satır Aralığı',

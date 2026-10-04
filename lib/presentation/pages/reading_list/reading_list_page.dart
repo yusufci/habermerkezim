@@ -224,7 +224,7 @@ class _ReadingListPageState extends ConsumerState<ReadingListPage> {
             },
             onShare: () {
               final text = '${article.title}\n\n${article.link}';
-              Share.share(text);
+              SharePlus.instance.share(ShareParams(text: text));
             },
             showCategoryBadge: true,
           );
@@ -317,7 +317,7 @@ class _ReadingListPageState extends ConsumerState<ReadingListPage> {
       title: Text(title),
       subtitle: Text(subtitle),
       trailing: isSelected
-          ? Icon(Icons.check_circle_rounded, color: AppTheme.primaryBlue)
+          ? const Icon(Icons.check_circle_rounded, color: AppTheme.primaryBlue)
           : null,
       onTap: onTap,
     );

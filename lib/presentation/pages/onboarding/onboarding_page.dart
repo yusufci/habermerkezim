@@ -124,7 +124,7 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
                         child: Row(
                           mainAxisSize: MainAxisSize.min,
                           children: [
-                            Icon(
+                            const Icon(
                               Icons.check_circle,
                               size: 16,
                               color: AppTheme.sageGreen,
@@ -194,18 +194,18 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
                             ),
                           ),
                         )
-                      : Row(
+                      : const Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            const Text(
+                            Text(
                               'Devam Et',
                               style: TextStyle(
                                 fontSize: 16,
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
-                            const SizedBox(width: 8),
-                            const Icon(Icons.arrow_forward, size: 20),
+                            SizedBox(width: 8),
+                            Icon(Icons.arrow_forward, size: 20),
                           ],
                         ),
                 ),

@@ -63,7 +63,11 @@ class _PopularArticlesPageState extends ConsumerState<PopularArticlesPage>
                 child: Row(
                   children: [
                     if (isSelected)
-                      Icon(Icons.check, color: AppTheme.primaryBlue, size: 20)
+                      const Icon(
+                        Icons.check,
+                        color: AppTheme.primaryBlue,
+                        size: 20,
+                      )
                     else
                       const SizedBox(width: 20),
                     const SizedBox(width: 8),

@@ -81,7 +81,7 @@ class _EditInterestsPageState extends ConsumerState<EditInterestsPage> {
         actions: [
           TextButton(
             onPressed: _saveInterests,
-            child: Text(
+            child: const Text(
               'Kaydet',
               style: TextStyle(
                 color: AppTheme.sageGreen,
@@ -145,7 +145,7 @@ class _EditInterestsPageState extends ConsumerState<EditInterestsPage> {
                       child: Row(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          Icon(
+                          const Icon(
                             Icons.check_circle,
                             size: 16,
                             color: AppTheme.sageGreen,

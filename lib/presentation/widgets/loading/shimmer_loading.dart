@@ -46,9 +46,9 @@ class ArticleCardShimmer extends StatelessWidget {
             Container(
               width: double.infinity,
               height: 200,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 color: Colors.white,
-                borderRadius: const BorderRadius.only(
+                borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(12),
                   topRight: Radius.circular(12),
                 ),
@@ -390,7 +390,7 @@ class LoadingOverlay extends StatelessWidget {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                SizedBox(
+                const SizedBox(
                   width: 40,
                   height: 40,
                   child: CircularProgressIndicator(

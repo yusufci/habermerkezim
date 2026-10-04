@@ -100,7 +100,11 @@ class _DiscoverPageState extends ConsumerState<DiscoverPage> {
       children: [
         Row(
           children: [
-            Icon(Icons.explore_rounded, color: AppTheme.primaryBlue, size: 20),
+            const Icon(
+              Icons.explore_rounded,
+              color: AppTheme.primaryBlue,
+              size: 20,
+            ),
             const SizedBox(width: 8),
             Text(
               'Yeni Kaynaklar',
@@ -126,7 +130,7 @@ class _DiscoverPageState extends ConsumerState<DiscoverPage> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Icon(
+                        const Icon(
                           Icons.rss_feed_rounded,
                           size: 32,
                           color: AppTheme.primaryBlue,
@@ -178,7 +182,7 @@ class _DiscoverPageState extends ConsumerState<DiscoverPage> {
       children: [
         Row(
           children: [
-            Icon(
+            const Icon(
               Icons.auto_awesome_rounded,
               color: AppTheme.primaryBlue,
               size: 20,

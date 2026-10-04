@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
@@ -6,7 +5,6 @@ import 'package:hive_flutter/hive_flutter.dart';
 
 import '../../data/models/article_model.dart';
 import '../../domain/entities/article.dart';
-import 'hive_service.dart';
 
 /// Offline okuma servisi
 /// Haberlerin cihaza kaydedilmesi, yönetimi ve connectivity kontrolü

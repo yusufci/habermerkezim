@@ -5,7 +5,6 @@ import 'package:flutter/foundation.dart';
 /// Request batching, compression, pagination ve rate limiting
 class OptimizedApiService {
   final Dio _dio;
-  final Map<String, DateTime> _lastRequestTimes = {};
   final Map<String, List<dynamic>> _batchQueue = {};
 
   static const Duration _rateLimitWindow = Duration(seconds: 1);
@@ -114,20 +113,6 @@ class OptimizedApiService {
       totalPages: nextPage.totalPages,
       hasMore: nextPage.hasMore,
     );
-  }
-
-  /// Rate limiting kontrolü
-  bool _canMakeRequest(String endpoint) {
-    final lastRequest = _lastRequestTimes[endpoint];
-    if (lastRequest == null) return true;
-
-    final timeSinceLastRequest = DateTime.now().difference(lastRequest);
-    return timeSinceLastRequest >= _rateLimitWindow;
-  }
-
-  /// Request zamanını kaydet
-  void _recordRequest(String endpoint) {
-    _lastRequestTimes[endpoint] = DateTime.now();
   }
 }
 

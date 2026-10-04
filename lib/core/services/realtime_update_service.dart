@@ -192,6 +192,9 @@ class LiveBadgeService {
   int _unreadCount = 0;
   int _newArticlesCount = 0;
 
+  int get currentUnreadCount => _unreadCount;
+  int get currentNewArticlesCount => _newArticlesCount;
+
   /// Okunmamış sayısını güncelle
   void updateUnreadCount(int count) {
     _unreadCount = count;

@@ -52,7 +52,7 @@ class UpdateDialog extends StatelessWidget {
                   color: AppTheme.primaryBlue.withValues(alpha: 0.1),
                   shape: BoxShape.circle,
                 ),
-                child: Icon(
+                child: const Icon(
                   Icons.system_update_rounded,
                   size: 48,
                   color: AppTheme.primaryBlue,
@@ -85,7 +85,7 @@ class UpdateDialog extends StatelessWidget {
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      Icon(
+                      const Icon(
                         Icons.info_outline_rounded,
                         size: 16,
                         color: AppTheme.primaryBlue,
@@ -161,14 +161,14 @@ class UpdateDialog extends StatelessWidget {
                         ),
                         elevation: 2,
                       ),
-                      child: Row(
+                      child: const Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          const Icon(Icons.download_rounded, size: 20),
-                          const SizedBox(width: 8),
+                          Icon(Icons.download_rounded, size: 20),
+                          SizedBox(width: 8),
                           Text(
                             'Güncelle',
-                            style: const TextStyle(
+                            style: TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 16,
                             ),
@@ -195,6 +195,7 @@ class UpdateDialog extends StatelessWidget {
         case UpdateType.immediate:
           // Zorunlu güncelleme
           final success = await updateService.startImmediateUpdate();
+          if (!context.mounted) return;
           if (!success) {
             _showError(
               context,
@@ -206,6 +207,7 @@ class UpdateDialog extends StatelessWidget {
         case UpdateType.flexible:
           // Esnek güncelleme
           final success = await updateService.startFlexibleUpdate();
+          if (!context.mounted) return;
           if (success) {
             Navigator.of(context).pop();
             // Güncelleme arka planda devam eder
@@ -227,8 +229,10 @@ class UpdateDialog extends StatelessWidget {
           final uri = Uri.parse(downloadUrl);
           if (await canLaunchUrl(uri)) {
             await launchUrl(uri, mode: LaunchMode.externalApplication);
+            if (!context.mounted) return;
             Navigator.of(context).pop();
           } else {
+            if (!context.mounted) return;
             _showError(
               context,
               'Play Store açılamadı. Lütfen manuel olarak güncelleyin.',
@@ -242,17 +246,19 @@ class UpdateDialog extends StatelessWidget {
       }
     } catch (e) {
       debugPrint('⚠️ Güncelleme hatası: $e');
-      _showError(context, 'Güncelleme sırasında bir hata oluştu.');
+      if (context.mounted) {
+        _showError(context, 'Güncelleme sırasında bir hata oluştu.');
+      }
     }
   }
 
   /// Güncelleme devam ediyor mesajı göster
   void _showUpdateInProgress(BuildContext context) {
     ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
+      const SnackBar(
         content: Row(
           children: [
-            const SizedBox(
+            SizedBox(
               width: 20,
               height: 20,
               child: CircularProgressIndicator(
@@ -260,11 +266,11 @@ class UpdateDialog extends StatelessWidget {
                 valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
               ),
             ),
-            const SizedBox(width: 12),
-            const Text('Güncelleme arka planda devam ediyor...'),
+            SizedBox(width: 12),
+            Text('Güncelleme arka planda devam ediyor...'),
           ],
         ),
-        duration: const Duration(seconds: 3),
+        duration: Duration(seconds: 3),
         backgroundColor: AppTheme.primaryBlue,
       ),
     );

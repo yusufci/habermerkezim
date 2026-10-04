@@ -411,7 +411,7 @@ class ArticleCard extends ConsumerWidget {
                                 Container(
                                   width: 4,
                                   height: 4,
-                                  decoration: BoxDecoration(
+                                  decoration: const BoxDecoration(
                                     color: AppTheme.primaryBlue,
                                     shape: BoxShape.circle,
                                   ),
@@ -850,7 +850,7 @@ class ArticleCard extends ConsumerWidget {
   /// Makaleyi paylaş
   void _shareArticle(BuildContext context) {
     final text = '${article.title}\n\n${article.link}';
-    Share.share(text);
+    SharePlus.instance.share(ShareParams(text: text));
 
     // Feedback göster
     ScaffoldMessenger.of(context).showSnackBar(
@@ -967,7 +967,7 @@ class ArticleCard extends ConsumerWidget {
             child: Row(
               mainAxisSize: MainAxisSize.min,
               children: [
-                Icon(
+                const Icon(
                   Icons.check_circle_rounded,
                   size: 12,
                   color: AppTheme.sageGreen,

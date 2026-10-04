@@ -74,20 +74,18 @@ class AudioPlayerService {
     try {
       await initialize();
 
-      final playlist = ConcatenatingAudioSource(
-        children: items.map((item) {
-          return AudioSource.uri(
-            Uri.parse(item['url'] ?? ''),
-            tag: MediaItem(
-              id: item['url'] ?? '',
-              title: item['title'] ?? 'Podcast',
-              artist: item['artist'] ?? 'Haber Merkezi',
-            ),
-          );
-        }).toList(),
-      );
+      final sources = items.map((item) {
+        return AudioSource.uri(
+          Uri.parse(item['url'] ?? ''),
+          tag: MediaItem(
+            id: item['url'] ?? '',
+            title: item['title'] ?? 'Podcast',
+            artist: item['artist'] ?? 'Haber Merkezi',
+          ),
+        );
+      }).toList();
 
-      await _audioPlayer.setAudioSource(playlist);
+      await _audioPlayer.setAudioSources(sources);
     } catch (e) {
       debugPrint('Playlist load error: $e');
     }

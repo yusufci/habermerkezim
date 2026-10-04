@@ -65,7 +65,7 @@ class NewsLocalDataSourceImpl implements NewsLocalDataSource {
       final prefs = await SharedPreferences.getInstance();
       final lastCleanup = prefs.getInt('_lastCleanupTimestamp') ?? 0;
       final now = DateTime.now().millisecondsSinceEpoch;
-      final oneDayInMs = 24 * 60 * 60 * 1000;
+      const oneDayInMs = 24 * 60 * 60 * 1000;
 
       if (now - lastCleanup > oneDayInMs) {
         await clearOldCache();

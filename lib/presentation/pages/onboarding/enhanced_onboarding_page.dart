@@ -272,14 +272,20 @@ class _WelcomePage extends StatelessWidget {
           const SizedBox(height: 32),
 
           // Özellik listesi
-          _FeatureItem(icon: Icons.bolt, text: 'Anlık haber bildirimleri'),
+          const _FeatureItem(
+            icon: Icons.bolt,
+            text: 'Anlık haber bildirimleri',
+          ),
           const SizedBox(height: 12),
-          _FeatureItem(
+          const _FeatureItem(
             icon: Icons.bookmark_border,
             text: 'Haberleri kaydet ve sonra oku',
           ),
           const SizedBox(height: 12),
-          _FeatureItem(icon: Icons.dark_mode, text: 'Karanlık mod desteği'),
+          const _FeatureItem(
+            icon: Icons.dark_mode,
+            text: 'Karanlık mod desteği',
+          ),
         ],
       ),
     );
@@ -588,18 +594,18 @@ class _ReadyPage extends StatelessWidget {
               ),
               borderRadius: BorderRadius.circular(16),
             ),
-            child: Column(
+            child: const Column(
               children: [
                 _SummaryItem(
                   icon: Icons.category,
                   text: 'Kategoriler ayarlandı',
                 ),
-                const Divider(height: 24),
+                Divider(height: 24),
                 _SummaryItem(
                   icon: Icons.notifications_active,
                   text: 'Bildirimler yapılandırıldı',
                 ),
-                const Divider(height: 24),
+                Divider(height: 24),
                 _SummaryItem(
                   icon: Icons.tune,
                   text: 'Kişiselleştirme tamamlandı',

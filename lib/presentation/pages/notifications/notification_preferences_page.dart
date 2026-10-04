@@ -10,7 +10,6 @@ class NotificationPreferencesPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final theme = Theme.of(context);
     final notificationState = ref.watch(notificationProvider);
     final settings = notificationState.settings;
 
@@ -75,7 +74,7 @@ class NotificationPreferencesPage extends ConsumerWidget {
                 color: AppTheme.primaryBlue.withValues(alpha: 0.1),
                 borderRadius: BorderRadius.circular(8),
               ),
-              child: Icon(
+              child: const Icon(
                 Icons.category,
                 color: AppTheme.primaryBlue,
                 size: 24,

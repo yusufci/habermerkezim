@@ -357,8 +357,9 @@ class AppTheme {
           return cs.outline;
         }),
         trackColor: WidgetStateProperty.resolveWith((states) {
-          if (states.contains(WidgetState.selected))
+          if (states.contains(WidgetState.selected)) {
             return epc.withValues(alpha: 0.5);
+          }
           return cs.surfaceContainerHighest;
         }),
       ),
@@ -395,7 +396,6 @@ class AppTheme {
         seedColor: pColor,
         brightness: Brightness.dark,
         // Material Design 3 Dark Surface Colors
-        background: matBlack, // #121212
         surface: matBlackSurface, // #1E1E1E
         surfaceContainerHighest: matBlackSurfaceVariant, // #2C2C2C
         onSurface: const Color(0xFFE3E3E3), // MD3 on-surface
@@ -664,8 +664,9 @@ class AppTheme {
           return cs.outline;
         }),
         trackColor: WidgetStateProperty.resolveWith((states) {
-          if (states.contains(WidgetState.selected))
+          if (states.contains(WidgetState.selected)) {
             return epc.withValues(alpha: 0.5);
+          }
           return cs.surfaceContainerHighest;
         }),
       ),

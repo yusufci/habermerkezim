@@ -38,7 +38,7 @@ class OfflineArticlesPage extends ConsumerWidget {
                 color: colorScheme.surfaceContainerLow,
                 border: Border(
                   bottom: BorderSide(
-                    color: colorScheme.outlineVariant.withOpacity(0.3),
+                    color: colorScheme.outlineVariant.withValues(alpha: 0.3),
                   ),
                 ),
               ),
@@ -103,7 +103,7 @@ class OfflineArticlesPage extends ConsumerWidget {
             Icon(
               Icons.offline_pin_outlined,
               size: 80,
-              color: colorScheme.onSurfaceVariant.withOpacity(0.4),
+              color: colorScheme.onSurfaceVariant.withValues(alpha: 0.4),
             ),
             const SizedBox(height: 24),
             Text(
@@ -236,7 +236,7 @@ class _OfflineArticleCard extends StatelessWidget {
                       child: Image.network(
                         article.imageUrl!,
                         fit: BoxFit.cover,
-                        errorBuilder: (_, __, ___) => Container(
+                        errorBuilder: (_, _, _) => Container(
                           color: colorScheme.surfaceContainerHighest,
                           child: Icon(
                             Icons.image_not_supported_outlined,

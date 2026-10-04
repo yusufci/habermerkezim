@@ -3,6 +3,7 @@
 /// Mevcut [core/error/exceptions.dart] ile geriye uyumludur.
 /// Her exception'ın kullanıcı dostu mesaj döndüren [userMessage] getter'ı vardır.
 /// Yeni kodlarda bu dosyadaki exception'lar tercih edilmelidir.
+library;
 
 /// Tüm uygulama exception'larının base class'ı
 abstract class AppException implements Exception {

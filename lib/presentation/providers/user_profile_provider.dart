@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -60,7 +61,7 @@ class UserProfileNotifier extends StateNotifier<UserProfileState> {
       state = state.copyWith(profile: updatedProfile);
     } catch (e) {
       // Hata durumunda sadece log
-      print('⚠️ Firebase Auth sync error: $e');
+      debugPrint('⚠️ Firebase Auth sync error: $e');
     }
   }
 

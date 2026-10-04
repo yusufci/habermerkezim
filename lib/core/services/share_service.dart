@@ -51,7 +51,9 @@ class ShareService {
     try {
       final shareText = _buildShareText(article);
 
-      await Share.share(shareText, subject: article.title);
+      await SharePlus.instance.share(
+        ShareParams(text: shareText, subject: article.title),
+      );
 
       // İstatistik kaydet
       await _recordShare(article.category, 'general');
@@ -70,7 +72,9 @@ class ShareService {
       final deepLink = _deepLinkService.createArticleWebUrl(article.id);
       final shareText = _buildShareTextWithLink(article, deepLink);
 
-      await Share.share(shareText, subject: article.title);
+      await SharePlus.instance.share(
+        ShareParams(text: shareText, subject: article.title),
+      );
 
       await _recordShare(article.category, 'deep_link');
 
@@ -85,7 +89,7 @@ class ShareService {
   /// Özel metin ile paylaş
   Future<bool> shareCustomText(String text, {String? subject}) async {
     try {
-      await Share.share(text, subject: subject);
+      await SharePlus.instance.share(ShareParams(text: text, subject: subject));
       return true;
     } catch (e) {
       debugPrint('❌ Özel metin paylaşım hatası: $e');

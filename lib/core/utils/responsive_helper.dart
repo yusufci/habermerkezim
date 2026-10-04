@@ -146,7 +146,7 @@ class ResponsiveHelper {
   double get horizontalPadding {
     if (isDesktop) {
       // Desktop'ta içeriği ortala
-      final maxContentWidth = 1200.0;
+      const maxContentWidth = 1200.0;
       if (_width > maxContentWidth) {
         return (_width - maxContentWidth) / 2;
       }

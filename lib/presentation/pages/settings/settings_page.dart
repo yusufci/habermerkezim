@@ -389,7 +389,7 @@ class SettingsPage extends ConsumerWidget {
                 color: AppTheme.primaryBlue.withValues(alpha: 0.1),
                 borderRadius: BorderRadius.circular(8),
               ),
-              child: Icon(
+              child: const Icon(
                 Icons.chrome_reader_mode_rounded,
                 color: AppTheme.primaryBlue,
                 size: 20,
@@ -569,7 +569,11 @@ class SettingsPage extends ConsumerWidget {
         ),
       ),
       trailing: isSelected
-          ? Icon(Icons.check_circle, color: AppTheme.primaryBlue, size: 24)
+          ? const Icon(
+              Icons.check_circle,
+              color: AppTheme.primaryBlue,
+              size: 24,
+            )
           : const Icon(Icons.circle_outlined, size: 24),
       onTap: () {
         ref.read(localeProvider.notifier).setLanguage(language);
@@ -799,7 +803,7 @@ class SettingsPage extends ConsumerWidget {
                   width: 56,
                   height: 56,
                   decoration: BoxDecoration(
-                    gradient: LinearGradient(
+                    gradient: const LinearGradient(
                       colors: [Colors.amber, Colors.orange],
                       begin: Alignment.topLeft,
                       end: Alignment.bottomRight,
@@ -842,7 +846,7 @@ class SettingsPage extends ConsumerWidget {
                         child: LinearProgressIndicator(
                           value: userLevel.progressToNextLevel,
                           backgroundColor: Colors.grey.withValues(alpha: 0.2),
-                          valueColor: AlwaysStoppedAnimation<Color>(
+                          valueColor: const AlwaysStoppedAnimation<Color>(
                             Colors.amber,
                           ),
                           minHeight: 6,
@@ -1068,7 +1072,7 @@ class SettingsPage extends ConsumerWidget {
                 color: AppTheme.primaryBlue.withValues(alpha: 0.1),
                 borderRadius: BorderRadius.circular(8),
               ),
-              child: Icon(
+              child: const Icon(
                 Icons.notifications_active_rounded,
                 color: AppTheme.primaryBlue,
                 size: 20,
@@ -1437,7 +1441,7 @@ class SettingsPage extends ConsumerWidget {
                 Container(
                   width: 64,
                   height: 64,
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     gradient: LinearGradient(
                       colors: [AppTheme.primaryBlue, AppTheme.secondaryBlue],
                     ),

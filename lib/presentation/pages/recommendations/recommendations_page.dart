@@ -3,7 +3,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../domain/entities/article.dart';
 import '../../../core/services/ml_recommendation_service.dart';
-import '../../../core/error/failures.dart';
 import '../../widgets/loading/shimmer_loading.dart';
 import '../../widgets/error/error_widget.dart';
 import '../home/widgets/article_card.dart';

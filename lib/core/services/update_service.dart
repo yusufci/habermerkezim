@@ -153,10 +153,10 @@ class UpdateService {
       }
 
       final dio = Dio();
-      dio.options.connectTimeout = Duration(
+      dio.options.connectTimeout = const Duration(
         milliseconds: ApiEndpoints.connectTimeoutMs,
       );
-      dio.options.receiveTimeout = Duration(
+      dio.options.receiveTimeout = const Duration(
         milliseconds: ApiEndpoints.receiveTimeoutMs,
       );
 

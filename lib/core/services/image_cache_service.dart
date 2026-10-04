@@ -230,7 +230,7 @@ class ImageCacheService {
       final cacheDir = await getTemporaryDirectory();
       final imageCacheDir = Directory('${cacheDir.path}/libCachedImageData');
 
-      if (await imageCacheDir.exists()) {
+      if (imageCacheDir.existsSync()) {
         int totalSize = 0;
         await for (final entity in imageCacheDir.list(recursive: true)) {
           if (entity is File) {

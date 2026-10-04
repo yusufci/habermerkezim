@@ -72,7 +72,7 @@ class PersonalizedNewsSection extends ConsumerWidget {
                     color: AppTheme.sageGreen.withValues(alpha: 0.2),
                     borderRadius: BorderRadius.circular(8),
                   ),
-                  child: Icon(
+                  child: const Icon(
                     Icons.favorite,
                     color: AppTheme.sageGreen,
                     size: 20,

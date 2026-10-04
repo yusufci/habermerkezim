@@ -315,24 +315,6 @@ class MLRecommendationService {
 
     return parts.join(' ');
   }
-
-  /// Öneri açıklaması oluştur (debugging için)
-  String explainRecommendation(Article article, _UserProfile profile) {
-    final contentScore = _calculateContentScore(article, profile);
-    final behavioralScore = _calculateBehavioralScore(article, profile);
-    final recencyScore = _calculateRecencyScore(article);
-    final qualityScore = _calculateQualityScore(article);
-
-    return '''
-📊 Öneri Skoru Detayları:
-- İçerik Uyumu: ${contentScore.toStringAsFixed(1)} (40%)
-- Davranış Uyumu: ${behavioralScore.toStringAsFixed(1)} (30%)
-- Güncellik: ${recencyScore.toStringAsFixed(1)} (20%)
-- Kalite: ${qualityScore.toStringAsFixed(1)} (10%)
-
-Toplam: ${_calculateAdvancedScore(article, profile).toStringAsFixed(1)}/100
-''';
-  }
 }
 
 /// Kullanıcı profili (davranış analizi sonucu)

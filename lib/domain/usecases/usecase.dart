@@ -3,23 +3,23 @@
 library;
 
 /// Parametresiz use case
-abstract class UseCase<Type> {
-  Future<Type> call();
+abstract class UseCase<T> {
+  Future<T> call();
 }
 
 /// Parametreli use case
-abstract class UseCaseWithParams<Type, Params> {
-  Future<Type> call(Params params);
+abstract class UseCaseWithParams<T, Params> {
+  Future<T> call(Params params);
 }
 
 /// Stream dönen use case (reactive)
-abstract class StreamUseCase<Type> {
-  Stream<Type> call();
+abstract class StreamUseCase<T> {
+  Stream<T> call();
 }
 
 /// Stream dönen parametreli use case
-abstract class StreamUseCaseWithParams<Type, Params> {
-  Stream<Type> call(Params params);
+abstract class StreamUseCaseWithParams<T, Params> {
+  Stream<T> call(Params params);
 }
 
 /// Void dönen parametreli use case

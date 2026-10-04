@@ -391,26 +391,25 @@ class _RssSourcesPageState extends ConsumerState<RssSourcesPage> {
                           .read(rssSourcesProvider.notifier)
                           .addSource(newSource);
 
-                      if (mounted) {
-                        Navigator.pop(context);
+                      if (!context.mounted) return;
+                      Navigator.pop(context);
 
-                        if (success) {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(
-                              content: Text(
-                                '${newSource.name} başarıyla eklendi',
-                              ),
-                              backgroundColor: Colors.green,
+                      if (success) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text(
+                              '${newSource.name} başarıyla eklendi',
                             ),
-                          );
-                        } else {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(
-                              content: Text('Kaynak eklenirken hata oluştu'),
-                              backgroundColor: Colors.red,
-                            ),
-                          );
-                        }
+                            backgroundColor: Colors.green,
+                          ),
+                        );
+                      } else {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text('Kaynak eklenirken hata oluştu'),
+                            backgroundColor: Colors.red,
+                          ),
+                        );
                       }
                     },
               child: const Text('Ekle'),

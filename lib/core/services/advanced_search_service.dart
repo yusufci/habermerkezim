@@ -98,7 +98,7 @@ class AdvancedSearchService {
     final stopwatch = Stopwatch()..start();
 
     // 1. Filtreleri uygula
-    var filteredArticles = _applyFilters(articles, filters);
+    final filteredArticles = _applyFilters(articles, filters);
 
     // 2. Arama yap
     List<Article> results;

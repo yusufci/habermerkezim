@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:collection';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -111,7 +110,7 @@ class PerformanceMonitorService {
     if (jankRatio > jankRatioWarning) {
       _logger.warning(
         'Yüksek jank oranı: ${(jankRatio * 100).toStringAsFixed(1)}% '
-        '(${_jankFrameCount}/$_totalFrameCount frame)',
+        '($_jankFrameCount/$_totalFrameCount frame)',
         tag: 'PERF_MONITOR',
       );
     }

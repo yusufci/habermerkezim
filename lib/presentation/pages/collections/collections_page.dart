@@ -11,8 +11,6 @@ class CollectionsPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final collections = ref.watch(collectionsProvider);
-    final theme = Theme.of(context);
-    final colorScheme = theme.colorScheme;
 
     return Scaffold(
       appBar: AppBar(title: const Text('Koleksiyonlar')),
@@ -39,7 +37,7 @@ class CollectionsPage extends ConsumerWidget {
             Icon(
               Icons.collections_bookmark_outlined,
               size: 80,
-              color: colorScheme.onSurfaceVariant.withOpacity(0.4),
+              color: colorScheme.onSurfaceVariant.withValues(alpha: 0.4),
             ),
             const SizedBox(height: 24),
             Text(
@@ -297,8 +295,7 @@ class _CollectionCard extends StatelessWidget {
                     Image.network(
                       collection.coverImageUrl!,
                       fit: BoxFit.cover,
-                      errorBuilder: (_, __, ___) =>
-                          _buildPlaceholder(colorScheme),
+                      errorBuilder: (_, _, _) => _buildPlaceholder(colorScheme),
                     )
                   else
                     _buildPlaceholder(colorScheme),
@@ -436,7 +433,7 @@ class _CollectionCard extends StatelessWidget {
                     : Icons.bookmark)
               : Icons.collections_bookmark,
           size: 40,
-          color: colorScheme.onSurfaceVariant.withOpacity(0.3),
+          color: colorScheme.onSurfaceVariant.withValues(alpha: 0.3),
         ),
       ),
     );
@@ -477,7 +474,9 @@ class _CollectionDetailPage extends ConsumerWidget {
                     Icon(
                       Icons.inbox_outlined,
                       size: 64,
-                      color: colorScheme.onSurfaceVariant.withOpacity(0.4),
+                      color: colorScheme.onSurfaceVariant.withValues(
+                        alpha: 0.4,
+                      ),
                     ),
                     const SizedBox(height: 16),
                     Text(
@@ -565,7 +564,7 @@ class _CollectionArticleCard extends StatelessWidget {
                       child: Image.network(
                         article.imageUrl!,
                         fit: BoxFit.cover,
-                        errorBuilder: (_, __, ___) => Container(
+                        errorBuilder: (_, _, _) => Container(
                           color: colorScheme.surfaceContainerHighest,
                           child: Icon(
                             Icons.image_not_supported_outlined,

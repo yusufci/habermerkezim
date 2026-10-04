@@ -474,7 +474,9 @@ class _PinchToZoomWidgetState extends State<PinchToZoomWidget>
     } else {
       final position = _transformationController.value.getTranslation();
       final zoomed = Matrix4.identity()
+        // ignore: deprecated_member_use
         ..translate(position.x, position.y)
+        // ignore: deprecated_member_use
         ..scale(2.0);
 
       _animation =

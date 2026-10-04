@@ -410,7 +410,7 @@ class BadgesPage extends ConsumerWidget {
                         backgroundColor: Theme.of(
                           context,
                         ).colorScheme.outline.withValues(alpha: 0.2),
-                        valueColor: AlwaysStoppedAnimation<Color>(
+                        valueColor: const AlwaysStoppedAnimation<Color>(
                           AppTheme.primaryBlue,
                         ),
                         strokeWidth: 4,
@@ -627,7 +627,7 @@ class BadgesPage extends ConsumerWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Icon(
+                  const Icon(
                     Icons.check_circle_rounded,
                     color: Colors.green,
                     size: 20,

@@ -6,8 +6,6 @@ import 'package:share_plus/share_plus.dart';
 
 import '../../../providers/providers.dart';
 import '../../../providers/connectivity_provider.dart';
-import '../../../providers/article_filter_provider.dart';
-import '../../../providers/reading_list_provider.dart';
 import '../../../../domain/entities/article.dart';
 import '../../../../core/utils/responsive_helper.dart';
 import '../../../../core/services/image_prefetch_service.dart';
@@ -96,19 +94,24 @@ class NewsListState extends ConsumerState<NewsList>
     if (filter.isActive) {
       categoryArticles = categoryArticles.where((article) {
         if (filter.startDate != null &&
-            article.publishedDate.isBefore(filter.startDate!))
+            article.publishedDate.isBefore(filter.startDate!)) {
           return false;
+        }
         if (filter.endDate != null &&
-            article.publishedDate.isAfter(filter.endDate!))
+            article.publishedDate.isAfter(filter.endDate!)) {
           return false;
+        }
         if (filter.selectedSources.isNotEmpty &&
-            !filter.selectedSources.contains(article.sourceName))
+            !filter.selectedSources.contains(article.sourceName)) {
           return false;
+        }
         if (filter.selectedCategories.isNotEmpty &&
-            !filter.selectedCategories.contains(article.category))
+            !filter.selectedCategories.contains(article.category)) {
           return false;
-        if (filter.isRead != null && article.isRead != filter.isRead)
+        }
+        if (filter.isRead != null && article.isRead != filter.isRead) {
           return false;
+        }
 
         if (filter.searchQuery != null && filter.searchQuery!.isNotEmpty) {
           final query = filter.searchQuery!.toLowerCase();
@@ -313,20 +316,24 @@ class NewsListState extends ConsumerState<NewsList>
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(Icons.error_outline_rounded, size: 64, color: Colors.red),
-            SizedBox(height: 16),
+            const Icon(
+              Icons.error_outline_rounded,
+              size: 64,
+              color: Colors.red,
+            ),
+            const SizedBox(height: 16),
             Text(newsState.errorMessage ?? 'Bilinmeyen hata'),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             ElevatedButton(
               onPressed: () {
                 ref.read(newsProvider.notifier).clearError();
                 _onRefresh();
               },
-              child: Text('Yeniden Dene'),
+              child: const Text('Yeniden Dene'),
             ),
             if (!isConnected)
-              Padding(
-                padding: const EdgeInsets.only(top: 16),
+              const Padding(
+                padding: EdgeInsets.only(top: 16),
                 child: Text(
                   'İnternet bağlantısı yok',
                   style: TextStyle(color: Colors.orange),
@@ -353,6 +360,8 @@ class NewsListState extends ConsumerState<NewsList>
 
     // Haber listesi - Gelişmiş lazy loading optimizasyonları (Mobil)
     return ListView.builder(
+      // ignore: deprecated_member_use
+      cacheExtent: 2000.0,
       controller: _scrollController,
       physics: const BouncingScrollPhysics(
         parent: AlwaysScrollableScrollPhysics(),
@@ -360,9 +369,8 @@ class NewsListState extends ConsumerState<NewsList>
       // Lazy loading optimizasyonları - PERFORMANS İYİLEŞTİRMELERİ
       addAutomaticKeepAlives: false, // Görünmeyen widget'ları dispose et
       addRepaintBoundaries: true, // Repaint boundary ekle (performans)
-      addSemanticIndexes: false, // Semantic index'leri kapat (daha hızlı)
-      cacheExtent:
-          2000, // Cache extent artırıldı (1000→2000) - daha smooth scroll
+      addSemanticIndexes:
+          false, // Cache extent artırıldı (1000→2000) - daha smooth scroll
       // Tahmini item yüksekliği - scroll bar hesaplaması için
       // itemExtent kullanılmıyor çünkü kartlar dinamik yüksekliğe sahip
       padding: const EdgeInsets.only(
@@ -920,7 +928,7 @@ class NewsListState extends ConsumerState<NewsList>
           const end = Offset.zero;
           const curve = Curves.easeInOut;
 
-          var tween = Tween(
+          final tween = Tween(
             begin: begin,
             end: end,
           ).chain(CurveTween(curve: curve));
@@ -963,7 +971,7 @@ class NewsListState extends ConsumerState<NewsList>
     }
 
     final text = '${article.title}\n\n${article.link}';
-    Share.share(text);
+    SharePlus.instance.share(ShareParams(text: text));
 
     // Feedback göster
     ScaffoldMessenger.of(context).showSnackBar(

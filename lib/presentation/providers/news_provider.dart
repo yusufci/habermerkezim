@@ -111,7 +111,7 @@ class NewsNotifier extends StateNotifier<NewsState> {
           if (mounted) {
             // DEBUG GÜVENLİK: Eğer stream'den gelen verilerde mevcut bir kategorinin haberleri
             // tamamen silinmişse (örneğin 'bilim' haberleri yoksa) ve bizde varsa, KORU!
-            List<Article> safeArticles = List.from(articles);
+            final List<Article> safeArticles = List.from(articles);
 
             // Eğer state'imizde zaten haberler varsa
             if (state.allArticles.isNotEmpty) {

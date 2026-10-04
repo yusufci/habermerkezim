@@ -1,6 +1,5 @@
 import 'package:dio/dio.dart';
 import 'package:xml/xml.dart';
-import 'package:flutter/foundation.dart';
 
 import '../../../core/constants/api_endpoints.dart';
 import '../../../core/error/exceptions.dart';
@@ -8,15 +7,6 @@ import '../../../core/utils/retry_helper.dart';
 import '../../../core/utils/app_logger.dart';
 import '../../../core/services/rss_health_check_service.dart';
 import '../../models/article_model.dart';
-
-/// Parse parametreleri - isolate'e geçmek için
-class _ParseParams {
-  final String xmlString;
-  final String category;
-  final String feedKey;
-
-  _ParseParams(this.xmlString, this.category, this.feedKey);
-}
 
 /// RSS feed'lerini çeken remote data source
 /// HTTP client ile RSS XML'lerini alır ve ArticleModel'lere parse eder
@@ -264,10 +254,7 @@ class RssRemoteDataSourceImpl implements RssRemoteDataSource {
         return RetryHelper.retryOrNull(
           operation: () async {
             final feedUrl = feedEntry.value;
-            final feedKey = feedEntry.key;
-            // AppLogger.debug('URL [$feedKey]: $feedUrl');
             final response = await _dio.get(feedUrl);
-            // AppLogger.debug('Response [$feedKey]: ${response.statusCode}');
 
             if (response.statusCode != 200) {
               throw ServerException(
@@ -390,13 +377,10 @@ class RssRemoteDataSourceImpl implements RssRemoteDataSource {
     final results = await Future.wait(futures);
 
     // Sonuçları birleştir
-    int loadedCount = 0;
     for (int i = 0; i < results.length; i++) {
       final articles = results[i];
       if (articles.isNotEmpty) {
-        loadedCount++;
         allArticles.addAll(articles);
-        // AppLogger.debug('${mainCategories[i]}: ${articles.length} makale eklendi (Toplam: ${allArticles.length})');
       }
     }
 

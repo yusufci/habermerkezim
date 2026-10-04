@@ -17,7 +17,6 @@ class _ReadingStatsPageState extends ConsumerState<ReadingStatsPage> {
   @override
   Widget build(BuildContext context) {
     final summary = ref.watch(readingStatsSummaryProvider(_selectedRange));
-    final theme = Theme.of(context);
 
     return Scaffold(
       appBar: AppBar(title: const Text('Okuma Istatistikleri')),
@@ -166,7 +165,7 @@ class _ReadingStatsPageState extends ConsumerState<ReadingStatsPage> {
                     size: 40,
                     color: summary.currentStreak > 0
                         ? Colors.orange
-                        : colorScheme.onSurfaceVariant.withOpacity(0.3),
+                        : colorScheme.onSurfaceVariant.withValues(alpha: 0.3),
                   ),
                   const SizedBox(height: 8),
                   Text(
@@ -196,7 +195,7 @@ class _ReadingStatsPageState extends ConsumerState<ReadingStatsPage> {
                     size: 40,
                     color: summary.longestStreak > 0
                         ? Colors.amber
-                        : colorScheme.onSurfaceVariant.withOpacity(0.3),
+                        : colorScheme.onSurfaceVariant.withValues(alpha: 0.3),
                   ),
                   const SizedBox(height: 8),
                   Text(

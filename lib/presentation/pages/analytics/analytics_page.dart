@@ -93,10 +93,10 @@ class _AnalyticsPageState extends ConsumerState<AnalyticsPage>
         ],
         bottom: TabBar(
           controller: _tabController,
-          tabs: [
-            Tab(text: 'Genel Bakış', icon: const Icon(Icons.dashboard_rounded)),
-            Tab(text: 'Grafikler', icon: const Icon(Icons.bar_chart_rounded)),
-            Tab(text: 'Detaylar', icon: const Icon(Icons.analytics_rounded)),
+          tabs: const [
+            Tab(text: 'Genel Bakış', icon: Icon(Icons.dashboard_rounded)),
+            Tab(text: 'Grafikler', icon: Icon(Icons.bar_chart_rounded)),
+            Tab(text: 'Detaylar', icon: Icon(Icons.analytics_rounded)),
           ],
         ),
       ),
@@ -1048,7 +1048,7 @@ class _AnalyticsPageState extends ConsumerState<AnalyticsPage>
 
   void _exportAnalytics() {
     // Analytics export işlemi
-    final data = ref.read(analyticsProvider.notifier).exportAnalytics();
+    ref.read(analyticsProvider.notifier).exportAnalytics();
 
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(

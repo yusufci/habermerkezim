@@ -57,7 +57,7 @@ class _CustomCategoriesPageState extends ConsumerState<CustomCategoriesPage> {
         actions: [
           IconButton(
             icon: const Icon(Icons.add_rounded),
-            onPressed: () => _showAddCategoryDialog(context),
+            onPressed: _showAddCategoryDialog,
             tooltip: 'Yeni Kategori',
           ),
         ],
@@ -93,7 +93,7 @@ class _CustomCategoriesPageState extends ConsumerState<CustomCategoriesPage> {
           ),
           const SizedBox(height: 24),
           ElevatedButton.icon(
-            onPressed: () => _showAddCategoryDialog(context),
+            onPressed: _showAddCategoryDialog,
             icon: const Icon(Icons.add_rounded),
             label: const Text('Kategori Oluştur'),
           ),
@@ -165,13 +165,13 @@ class _CustomCategoriesPageState extends ConsumerState<CustomCategoriesPage> {
               ],
               onSelected: (value) {
                 if (value == 'edit') {
-                  _showEditCategoryDialog(context, category);
+                  _showEditCategoryDialog(category);
                 } else if (value == 'delete') {
-                  _showDeleteConfirmDialog(context, category);
+                  _showDeleteConfirmDialog(category);
                 }
               },
             ),
-            onTap: () => _showEditCategoryDialog(context, category),
+            onTap: () => _showEditCategoryDialog(category),
           ),
         );
       },
@@ -191,15 +191,15 @@ class _CustomCategoriesPageState extends ConsumerState<CustomCategoriesPage> {
     return iconMap[iconName] ?? iconMap['default']!;
   }
 
-  void _showAddCategoryDialog(BuildContext context) {
-    _showCategoryDialog(context, null);
+  void _showAddCategoryDialog() {
+    _showCategoryDialog(null);
   }
 
-  void _showEditCategoryDialog(BuildContext context, CustomCategory category) {
-    _showCategoryDialog(context, category);
+  void _showEditCategoryDialog(CustomCategory category) {
+    _showCategoryDialog(category);
   }
 
-  void _showCategoryDialog(BuildContext context, CustomCategory? category) {
+  void _showCategoryDialog(CustomCategory? category) {
     final nameController = TextEditingController(text: category?.name ?? '');
     final descriptionController = TextEditingController(
       text: category?.description ?? '',
@@ -210,7 +210,7 @@ class _CustomCategoriesPageState extends ConsumerState<CustomCategoriesPage> {
 
     showDialog(
       context: context,
-      builder: (context) => AlertDialog(
+      builder: (dialogContext) => AlertDialog(
         title: Text(category == null ? 'Yeni Kategori' : 'Kategori Düzenle'),
         content: SingleChildScrollView(
           child: Column(
@@ -247,7 +247,7 @@ class _CustomCategoriesPageState extends ConsumerState<CustomCategoriesPage> {
         ),
         actions: [
           TextButton(
-            onPressed: () => Navigator.of(context).pop(),
+            onPressed: () => Navigator.of(dialogContext).pop(),
             child: const Text('İptal'),
           ),
           ElevatedButton(
@@ -290,8 +290,11 @@ class _CustomCategoriesPageState extends ConsumerState<CustomCategoriesPage> {
                   ? await CustomCategoriesService.saveCategory(newCategory)
                   : await CustomCategoriesService.updateCategory(newCategory);
 
-              if (success && mounted) {
-                Navigator.of(context).pop();
+              if (dialogContext.mounted) {
+                Navigator.of(dialogContext).pop();
+              }
+              if (!mounted) return;
+              if (success) {
                 _loadCategories();
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(
@@ -302,7 +305,7 @@ class _CustomCategoriesPageState extends ConsumerState<CustomCategoriesPage> {
                     ),
                   ),
                 );
-              } else if (mounted) {
+              } else {
                 ScaffoldMessenger.of(context).showSnackBar(
                   const SnackBar(content: Text('Bir hata oluştu')),
                 );
@@ -315,17 +318,17 @@ class _CustomCategoriesPageState extends ConsumerState<CustomCategoriesPage> {
     );
   }
 
-  void _showDeleteConfirmDialog(BuildContext context, CustomCategory category) {
+  void _showDeleteConfirmDialog(CustomCategory category) {
     showDialog(
       context: context,
-      builder: (context) => AlertDialog(
+      builder: (dialogContext) => AlertDialog(
         title: const Text('Kategoriyi Sil'),
         content: Text(
           '${category.name} kategorisini silmek istediğinizden emin misiniz?',
         ),
         actions: [
           TextButton(
-            onPressed: () => Navigator.of(context).pop(),
+            onPressed: () => Navigator.of(dialogContext).pop(),
             child: const Text('İptal'),
           ),
           ElevatedButton(
@@ -333,13 +336,16 @@ class _CustomCategoriesPageState extends ConsumerState<CustomCategoriesPage> {
               final success = await CustomCategoriesService.deleteCategory(
                 category.id,
               );
-              if (success && mounted) {
-                Navigator.of(context).pop();
+              if (dialogContext.mounted) {
+                Navigator.of(dialogContext).pop();
+              }
+              if (!mounted) return;
+              if (success) {
                 _loadCategories();
                 ScaffoldMessenger.of(context).showSnackBar(
                   const SnackBar(content: Text('Kategori silindi')),
                 );
-              } else if (mounted) {
+              } else {
                 ScaffoldMessenger.of(context).showSnackBar(
                   const SnackBar(content: Text('Silme işlemi başarısız')),
                 );

@@ -460,7 +460,7 @@ class ArticleModel extends HiveObject {
     // UUID v5: namespace + name bazlı deterministic UUID üretir
     // Aynı girdi her zaman aynı UUID'yi üretir (hashCode'dan farklı olarak platform bağımsız)
     final name = '$link|$sourceName|$title|$pubDate';
-    return uuid.v5(Uuid.NAMESPACE_URL, name);
+    return uuid.v5(Namespace.url.value, name);
   }
 
   @override

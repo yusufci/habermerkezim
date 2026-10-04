@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/foundation.dart' hide Category;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../providers/providers.dart';
@@ -12,9 +11,7 @@ import 'widgets/category_tabs.dart';
 import 'widgets/app_drawer.dart';
 import 'widgets/notification_banner.dart';
 import '../search/search_page.dart';
-import '../profile/profile_page.dart';
 import '../favorites/favorites_page.dart';
-import '../reading_list/reading_list_page.dart';
 import '../settings/settings_page.dart';
 
 /// CategoryTabs için PreferredSizeWidget wrapper
@@ -158,7 +155,7 @@ class _HomePageState extends ConsumerState<HomePage>
                   Container(
                     width: 28,
                     height: 28,
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                       gradient: LinearGradient(
                         colors: [
                           AppTheme.oceanBlueDark,
@@ -174,7 +171,7 @@ class _HomePageState extends ConsumerState<HomePage>
                     ),
                   ),
                   const SizedBox(width: 10),
-                  Flexible(
+                  const Flexible(
                     child: Text(
                       'Haber Merkezim',
                       overflow: TextOverflow.ellipsis,
@@ -197,9 +194,9 @@ class _HomePageState extends ConsumerState<HomePage>
                       color: Colors.orange,
                       borderRadius: BorderRadius.circular(12),
                     ),
-                    child: Row(
+                    child: const Row(
                       mainAxisSize: MainAxisSize.min,
-                      children: const [
+                      children: [
                         Icon(Icons.wifi_off, size: 16, color: Colors.white),
                         SizedBox(width: 4),
                         Text(
@@ -469,7 +466,7 @@ class _HomePageState extends ConsumerState<HomePage>
                   Container(
                     width: 48,
                     height: 48,
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                       gradient: LinearGradient(
                         colors: [
                           AppTheme.oceanBlueDark,
@@ -660,9 +657,9 @@ class _HomePageState extends ConsumerState<HomePage>
                     color: Colors.orange,
                     borderRadius: BorderRadius.circular(16),
                   ),
-                  child: Row(
+                  child: const Row(
                     mainAxisSize: MainAxisSize.min,
-                    children: const [
+                    children: [
                       Icon(Icons.wifi_off, size: 16, color: Colors.white),
                       SizedBox(width: 6),
                       Text(

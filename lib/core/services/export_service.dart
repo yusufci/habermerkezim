@@ -201,9 +201,12 @@ class ExportService {
   /// Dosyayı paylaş
   Future<void> shareExportedFile(String filePath) async {
     try {
-      await Share.shareXFiles([
-        XFile(filePath),
-      ], subject: 'Haber Merkezi Verileri');
+      await SharePlus.instance.share(
+        ShareParams(
+          files: [XFile(filePath)],
+          subject: 'Haber Merkezi Verileri',
+        ),
+      );
     } catch (e) {
       debugPrint('Share error: $e');
       rethrow;
@@ -318,7 +321,7 @@ class ExportService {
     final directory = await getApplicationDocumentsDirectory();
     final exportDir = Directory('${directory.path}/exports');
 
-    if (!await exportDir.exists()) {
+    if (!exportDir.existsSync()) {
       await exportDir.create(recursive: true);
     }
 
@@ -334,7 +337,7 @@ class ExportService {
       final directory = await getApplicationDocumentsDirectory();
       final exportDir = Directory('${directory.path}/exports');
 
-      if (!await exportDir.exists()) {
+      if (!exportDir.existsSync()) {
         return [];
       }
 
@@ -351,7 +354,7 @@ class ExportService {
   Future<bool> deleteExportedFile(String filePath) async {
     try {
       final file = File(filePath);
-      if (await file.exists()) {
+      if (file.existsSync()) {
         await file.delete();
         return true;
       }
@@ -368,7 +371,7 @@ class ExportService {
       final directory = await getApplicationDocumentsDirectory();
       final exportDir = Directory('${directory.path}/exports');
 
-      if (await exportDir.exists()) {
+      if (exportDir.existsSync()) {
         await exportDir.delete(recursive: true);
       }
       return true;

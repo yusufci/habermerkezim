@@ -170,7 +170,7 @@ class RelatedArticlesService {
     };
 
     // Kelimeleri çıkar
-    final regexPattern =
+    const regexPattern =
         r'[\s\.,;:!?()\[\]{}"'
         '-]+';
     final words = text

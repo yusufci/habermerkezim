@@ -12,7 +12,6 @@ import '../../../core/services/article_content_service.dart';
 import '../../../core/utils/responsive_helper.dart';
 import '../../providers/providers.dart';
 import '../../providers/analytics_provider.dart';
-import '../../providers/reading_list_provider.dart';
 import '../../providers/popular_articles_provider.dart';
 import '../../providers/gamification_provider.dart';
 import '../../providers/reading_mode_provider.dart';
@@ -184,7 +183,6 @@ class _ArticleDetailPageState extends ConsumerState<ArticleDetailPage> {
     final categoryColor = AppTheme.getCategoryColor(widget.article.category);
     final responsive = ResponsiveHelper(context);
     final isTabletOrLarger = responsive.isTablet || responsive.isDesktop;
-    final readingMode = ref.watch(readingModeProvider);
 
     // Tablet ve desktop için yan panel layout
     if (isTabletOrLarger) {
@@ -687,7 +685,9 @@ class _ArticleDetailPageState extends ConsumerState<ArticleDetailPage> {
           end: Alignment.bottomCenter,
         ),
       ),
-      child: Center(child: Icon(Icons.article, size: 48, color: Colors.white)),
+      child: const Center(
+        child: Icon(Icons.article, size: 48, color: Colors.white),
+      ),
     );
   }
 
@@ -1303,7 +1303,9 @@ class _ArticleDetailPageState extends ConsumerState<ArticleDetailPage> {
   /// Makaleyi paylaş
   void _shareArticle() async {
     final text = '${widget.article.title}\n\n${widget.article.link}';
-    await Share.share(text, subject: widget.article.title);
+    await SharePlus.instance.share(
+      ShareParams(text: text, subject: widget.article.title),
+    );
 
     // Analytics kaydı - paylaşım yapıldı
     ref.read(analyticsProvider.notifier).recordSharePerformed();
@@ -1399,6 +1401,8 @@ class _ArticleDetailPageState extends ConsumerState<ArticleDetailPage> {
         debugPrint('❌ Gamification favorite error: $e');
       }
     }
+
+    if (!mounted) return;
 
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(

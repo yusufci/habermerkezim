@@ -101,7 +101,7 @@ class AvatarService {
         path.join(appDir.path, _avatarDirName),
       );
 
-      if (!await avatarDir.exists()) {
+      if (!avatarDir.existsSync()) {
         await avatarDir.create(recursive: true);
       }
 
@@ -172,7 +172,7 @@ class AvatarService {
 
       // User profile'dan avatar URL'i kaldır
       final userBox = HiveService.userProfileBox;
-      UserProfileModel? currentProfile = userBox.get(userId);
+      final UserProfileModel? currentProfile = userBox.get(userId);
 
       if (currentProfile != null) {
         final updatedProfile = UserProfileModel(
@@ -204,7 +204,7 @@ class AvatarService {
 
       if (currentProfile?.avatarUrl != null) {
         final File oldFile = File(currentProfile!.avatarUrl!);
-        if (await oldFile.exists()) {
+        if (oldFile.existsSync()) {
           await oldFile.delete();
           debugPrint('🗑️ Eski avatar silindi: ${currentProfile.avatarUrl}');
         }
@@ -222,7 +222,7 @@ class AvatarService {
 
       if (profile?.avatarUrl != null) {
         final File file = File(profile!.avatarUrl!);
-        if (await file.exists()) {
+        if (file.existsSync()) {
           return file;
         }
       }
@@ -265,7 +265,7 @@ class AvatarService {
         path.join(appDir.path, _avatarDirName),
       );
 
-      if (await avatarDir.exists()) {
+      if (avatarDir.existsSync()) {
         await avatarDir.delete(recursive: true);
         debugPrint('🗑️ Tüm avatar dosyaları silindi');
       }

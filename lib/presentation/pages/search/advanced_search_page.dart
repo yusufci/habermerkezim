@@ -43,8 +43,6 @@ class _AdvancedSearchPageState extends ConsumerState<AdvancedSearchPage> {
   @override
   Widget build(BuildContext context) {
     final searchState = ref.watch(advancedSearchProvider);
-    final theme = Theme.of(context);
-    final colorScheme = theme.colorScheme;
 
     return Scaffold(
       appBar: AppBar(
@@ -146,7 +144,7 @@ class _AdvancedSearchPageState extends ConsumerState<AdvancedSearchPage> {
         color: colorScheme.surfaceContainerLow,
         border: Border(
           bottom: BorderSide(
-            color: colorScheme.outlineVariant.withOpacity(0.3),
+            color: colorScheme.outlineVariant.withValues(alpha: 0.3),
           ),
         ),
       ),
@@ -272,7 +270,7 @@ class _AdvancedSearchPageState extends ConsumerState<AdvancedSearchPage> {
                 // Sıralama dropdown
                 Expanded(
                   child: DropdownButtonFormField<SearchSortType>(
-                    value: searchState.filters.sortType,
+                    initialValue: searchState.filters.sortType,
                     decoration: InputDecoration(
                       labelText: 'Sıralama',
                       border: const OutlineInputBorder(),
@@ -500,7 +498,7 @@ class _AdvancedSearchPageState extends ConsumerState<AdvancedSearchPage> {
               Icon(
                 Icons.search_off,
                 size: 64,
-                color: colorScheme.onSurfaceVariant.withOpacity(0.4),
+                color: colorScheme.onSurfaceVariant.withValues(alpha: 0.4),
               ),
               const SizedBox(height: 16),
               Text(
@@ -533,7 +531,7 @@ class _AdvancedSearchPageState extends ConsumerState<AdvancedSearchPage> {
             color: colorScheme.surfaceContainerLow,
             border: Border(
               bottom: BorderSide(
-                color: colorScheme.outlineVariant.withOpacity(0.3),
+                color: colorScheme.outlineVariant.withValues(alpha: 0.3),
               ),
             ),
           ),
@@ -572,7 +570,7 @@ class _AdvancedSearchPageState extends ConsumerState<AdvancedSearchPage> {
           Icon(
             Icons.search,
             size: 64,
-            color: colorScheme.onSurfaceVariant.withOpacity(0.3),
+            color: colorScheme.onSurfaceVariant.withValues(alpha: 0.3),
           ),
           const SizedBox(height: 16),
           Text(
@@ -585,7 +583,7 @@ class _AdvancedSearchPageState extends ConsumerState<AdvancedSearchPage> {
           Text(
             'Başlık, içerik veya kaynak adına göre arayabilirsin',
             style: theme.textTheme.bodyMedium?.copyWith(
-              color: colorScheme.onSurfaceVariant.withOpacity(0.7),
+              color: colorScheme.onSurfaceVariant.withValues(alpha: 0.7),
             ),
           ),
         ],
@@ -672,7 +670,7 @@ class _SearchResultCard extends StatelessWidget {
                     child: Image.network(
                       article.imageUrl!,
                       fit: BoxFit.cover,
-                      errorBuilder: (_, __, ___) => Container(
+                      errorBuilder: (_, _, _) => Container(
                         color: colorScheme.surfaceContainerHighest,
                         child: Icon(
                           Icons.image_not_supported_outlined,

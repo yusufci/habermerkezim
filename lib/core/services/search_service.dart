@@ -13,9 +13,6 @@ class SearchService {
   factory SearchService() => _instance;
   SearchService._internal();
 
-  /// Popüler aramalar cache key
-  static const String _popularSearchesKey = 'popular_searches';
-
   /// Arama sayaçları cache key
   static const String _searchCountsKey = 'search_counts';
 
@@ -423,13 +420,8 @@ class SearchService {
 
     final normalizedQuery = _normalizeText(query);
     final normalizedText = _normalizeText(text);
-    final queryWords = normalizedQuery
-        .split(' ')
-        .where((w) => w.length > 1)
-        .toList();
 
     final highlights = <HighlightedText>[];
-    var currentIndex = 0;
 
     // Basit highlight - tam query eşleşmesi
     final queryIndex = normalizedText.indexOf(normalizedQuery);

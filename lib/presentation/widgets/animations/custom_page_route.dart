@@ -119,22 +119,16 @@ enum PageTransitionType {
 /// Modal için özel route
 class ModalPageRoute<T> extends PageRouteBuilder<T> {
   final Widget page;
-  @override
-  final bool barrierDismissible;
-  @override
-  final Color barrierColor;
 
   ModalPageRoute({
     required this.page,
-    this.barrierDismissible = true,
-    this.barrierColor = Colors.black54,
+    super.barrierDismissible = true,
+    super.barrierColor = Colors.black54,
   }) : super(
          pageBuilder: (context, animation, secondaryAnimation) => page,
          transitionDuration: const Duration(milliseconds: 300),
          reverseTransitionDuration: const Duration(milliseconds: 300),
          opaque: false,
-         barrierDismissible: barrierDismissible,
-         barrierColor: barrierColor,
          transitionsBuilder: (context, animation, secondaryAnimation, child) {
            final curvedAnimation = CurvedAnimation(
              parent: animation,
@@ -158,16 +152,13 @@ class ModalPageRoute<T> extends PageRouteBuilder<T> {
 /// Bottom sheet için özel route
 class BottomSheetPageRoute<T> extends PageRouteBuilder<T> {
   final Widget page;
-  @override
-  final bool barrierDismissible;
 
-  BottomSheetPageRoute({required this.page, this.barrierDismissible = true})
+  BottomSheetPageRoute({required this.page, super.barrierDismissible = true})
     : super(
         pageBuilder: (context, animation, secondaryAnimation) => page,
         transitionDuration: const Duration(milliseconds: 300),
         reverseTransitionDuration: const Duration(milliseconds: 200),
         opaque: false,
-        barrierDismissible: barrierDismissible,
         barrierColor: Colors.black54,
         transitionsBuilder: (context, animation, secondaryAnimation, child) {
           final curvedAnimation = CurvedAnimation(

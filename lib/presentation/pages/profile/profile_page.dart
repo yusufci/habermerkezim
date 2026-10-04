@@ -1,4 +1,3 @@
-import 'dart:math' as math;
 import 'dart:io';
 import 'dart:async';
 import 'package:flutter/material.dart';
@@ -207,8 +206,8 @@ class _ProfilePageState extends ConsumerState<ProfilePage>
                 : [AppTheme.primaryBlue, AppTheme.secondaryBlue],
           ),
         ),
-        child: FlexibleSpaceBar(
-          title: const Text(
+        child: const FlexibleSpaceBar(
+          title: Text(
             'Profil',
             style: TextStyle(
               color: Colors.white,
@@ -234,7 +233,11 @@ class _ProfilePageState extends ConsumerState<ProfilePage>
           },
           tooltip: 'Yenile',
         ),
-        const SizedBox.shrink(),
+        IconButton(
+          icon: const Icon(Icons.logout_rounded, color: Colors.white),
+          onPressed: () => _handleLogout(context),
+          tooltip: 'Çıkış Yap',
+        ),
       ],
     );
   }
@@ -332,55 +335,62 @@ class _ProfilePageState extends ConsumerState<ProfilePage>
             ),
           ),
         ),
-        Container(
-          width: 100,
-          height: 100,
-          decoration: BoxDecoration(
-            shape: BoxShape.circle,
-            gradient: LinearGradient(
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-              colors: [
-                _getLevelColor(profile.stats.totalArticlesRead),
-                _getLevelColor(
-                  profile.stats.totalArticlesRead,
-                ).withValues(alpha: 0.7),
+        GestureDetector(
+          onTap: () => _showAvatarEditDialog(context, profile),
+          child: Container(
+            width: 100,
+            height: 100,
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              gradient: LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                colors: [
+                  _getLevelColor(profile.stats.totalArticlesRead),
+                  _getLevelColor(
+                    profile.stats.totalArticlesRead,
+                  ).withValues(alpha: 0.7),
+                ],
+              ),
+              boxShadow: [
+                BoxShadow(
+                  color: _getLevelColor(
+                    profile.stats.totalArticlesRead,
+                  ).withValues(alpha: 0.4),
+                  blurRadius: 20,
+                  offset: const Offset(0, 8),
+                ),
               ],
             ),
-            boxShadow: [
-              BoxShadow(
-                color: _getLevelColor(
-                  profile.stats.totalArticlesRead,
-                ).withValues(alpha: 0.4),
-                blurRadius: 20,
-                offset: const Offset(0, 8),
-              ),
-            ],
-          ),
-          child: profile.avatarUrl != null && profile.avatarUrl!.isNotEmpty
-              ? ClipOval(
-                  child: profile.avatarUrl!.startsWith('http')
-                      ? CachedNetworkImage(
-                          imageUrl: profile.avatarUrl!,
-                          fit: BoxFit.cover,
-                          errorWidget: (context, url, error) => const Icon(
-                            Icons.person_rounded,
-                            size: 50,
-                            color: Colors.white,
+            child: profile.avatarUrl != null && profile.avatarUrl!.isNotEmpty
+                ? ClipOval(
+                    child: profile.avatarUrl!.startsWith('http')
+                        ? CachedNetworkImage(
+                            imageUrl: profile.avatarUrl!,
+                            fit: BoxFit.cover,
+                            errorWidget: (context, url, error) => const Icon(
+                              Icons.person_rounded,
+                              size: 50,
+                              color: Colors.white,
+                            ),
+                          )
+                        : Image.file(
+                            File(profile.avatarUrl!),
+                            fit: BoxFit.cover,
+                            errorBuilder: (context, error, stackTrace) =>
+                                const Icon(
+                                  Icons.person_rounded,
+                                  size: 50,
+                                  color: Colors.white,
+                                ),
                           ),
-                        )
-                      : Image.file(
-                          File(profile.avatarUrl!),
-                          fit: BoxFit.cover,
-                          errorBuilder: (context, error, stackTrace) =>
-                              const Icon(
-                                Icons.person_rounded,
-                                size: 50,
-                                color: Colors.white,
-                              ),
-                        ),
-                )
-              : const Icon(Icons.person_rounded, size: 50, color: Colors.white),
+                  )
+                : const Icon(
+                    Icons.person_rounded,
+                    size: 50,
+                    color: Colors.white,
+                  ),
+          ),
         ),
         if (completionPercent == 100)
           Positioned(
@@ -1281,8 +1291,9 @@ class _ProfilePageState extends ConsumerState<ProfilePage>
 
     if (profile.name != null && profile.name!.isNotEmpty) completedItems++;
     if (profile.email != null && profile.email!.isNotEmpty) completedItems++;
-    if (profile.avatarUrl != null && profile.avatarUrl!.isNotEmpty)
+    if (profile.avatarUrl != null && profile.avatarUrl!.isNotEmpty) {
       completedItems++;
+    }
     if (profile.preferences.interestTags.isNotEmpty) completedItems++;
     if (profile.stats.totalArticlesRead > 0) completedItems++;
 
@@ -1570,8 +1581,8 @@ class _ProfilePageState extends ConsumerState<ProfilePage>
     showDialog(
       context: context,
       barrierDismissible: false,
-      builder: (context) => WillPopScope(
-        onWillPop: () async => false,
+      builder: (context) => PopScope(
+        canPop: false,
         child: AlertDialog(
           content: Column(
             mainAxisSize: MainAxisSize.min,
@@ -1652,6 +1663,7 @@ class _ProfilePageState extends ConsumerState<ProfilePage>
           // Profili yeniden yükle
           await ref.read(userProfileProvider.notifier).loadProfile();
 
+          if (!context.mounted) return;
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(
               content: Text('Avatar başarıyla güncellendi! 🎉'),

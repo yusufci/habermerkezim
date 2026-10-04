@@ -234,7 +234,11 @@ class _PerformanceMonitorPageState
                 padding: const EdgeInsets.all(12),
                 child: Row(
                   children: [
-                    Icon(Icons.update_rounded, color: Colors.blue, size: 20),
+                    const Icon(
+                      Icons.update_rounded,
+                      color: Colors.blue,
+                      size: 20,
+                    ),
                     const SizedBox(width: 12),
                     Text(
                       'Her saniye otomatik güncelleniyor... ($_updateCount)',
@@ -259,7 +263,10 @@ class _PerformanceMonitorPageState
                   children: [
                     Row(
                       children: [
-                        Icon(Icons.warning_amber_rounded, color: Colors.orange),
+                        const Icon(
+                          Icons.warning_amber_rounded,
+                          color: Colors.orange,
+                        ),
                         const SizedBox(width: 8),
                         Text(
                           'Not',
@@ -406,7 +413,7 @@ class _PerformanceMonitorPageState
                       Container(
                         width: 6,
                         height: 6,
-                        decoration: BoxDecoration(
+                        decoration: const BoxDecoration(
                           color: Colors.green,
                           shape: BoxShape.circle,
                         ),

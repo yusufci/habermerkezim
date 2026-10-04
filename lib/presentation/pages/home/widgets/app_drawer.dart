@@ -176,7 +176,7 @@ class AppDrawer extends ConsumerWidget {
     String connectionType,
   ) {
     return DrawerHeader(
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         gradient: LinearGradient(
           colors: [AppTheme.primaryBlue, AppTheme.secondaryBlue],
           begin: Alignment.topLeft,
@@ -307,31 +307,6 @@ class AppDrawer extends ConsumerWidget {
     );
   }
 
-  /// Favori sayısı göstergesi
-  Widget _buildFavoriteCount(WidgetRef ref) {
-    final favoritesCount = ref.watch(favoritesCountProvider);
-
-    if (favoritesCount == 0) return const SizedBox.shrink();
-
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
-      decoration: BoxDecoration(
-        color: AppTheme.primaryBlue,
-        borderRadius: BorderRadius.circular(10),
-      ),
-      constraints: const BoxConstraints(minWidth: 20, minHeight: 20),
-      child: Text(
-        favoritesCount.toString(),
-        style: const TextStyle(
-          color: Colors.white,
-          fontSize: 12,
-          fontWeight: FontWeight.bold,
-        ),
-        textAlign: TextAlign.center,
-      ),
-    );
-  }
-
   /// Tema ayarları bölümü
   Widget _buildThemeSection(
     BuildContext context,
@@ -340,9 +315,9 @@ class AppDrawer extends ConsumerWidget {
   ) {
     return Column(
       children: [
-        ListTile(
-          leading: const Icon(Icons.palette_rounded),
-          title: const Text('Tema'),
+        const ListTile(
+          leading: Icon(Icons.palette_rounded),
+          title: Text('Tema'),
         ),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -488,7 +463,7 @@ class AppDrawer extends ConsumerWidget {
   void _showClearCacheDialog(BuildContext context, WidgetRef ref) {
     showDialog(
       context: context,
-      builder: (context) => AlertDialog(
+      builder: (dialogContext) => AlertDialog(
         title: const Text('Önbelleği Temizle'),
         content: const Text(
           'Tüm önbelleğe alınmış haberler, favoriler ve ayarlar silinecek. '
@@ -496,24 +471,25 @@ class AppDrawer extends ConsumerWidget {
         ),
         actions: [
           TextButton(
-            onPressed: () => Navigator.of(context).pop(),
+            onPressed: () => Navigator.of(dialogContext).pop(),
             child: const Text('İptal'),
           ),
           ElevatedButton(
             onPressed: () async {
-              Navigator.of(context).pop();
+              final scaffoldMessenger = ScaffoldMessenger.of(context);
+              Navigator.of(dialogContext).pop();
 
               try {
                 await ref.read(newsProvider.notifier).clearCache();
                 await HiveService.clearAllData();
 
-                ScaffoldMessenger.of(context).showSnackBar(
+                scaffoldMessenger.showSnackBar(
                   const SnackBar(content: Text('Önbellek temizlendi')),
                 );
               } catch (e) {
-                ScaffoldMessenger.of(
-                  context,
-                ).showSnackBar(SnackBar(content: Text('Hata: $e')));
+                scaffoldMessenger.showSnackBar(
+                  SnackBar(content: Text('Hata: $e')),
+                );
               }
             },
             style: ElevatedButton.styleFrom(

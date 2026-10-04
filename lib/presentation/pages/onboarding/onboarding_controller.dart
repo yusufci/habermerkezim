@@ -45,7 +45,7 @@ class OnboardingPageState {
   bool get isLastPage => currentPage == 3;
 
   /// Kategori seçimi yeterli mi
-  bool get hasEnoughCategories => selectedCategories.length >= 1;
+  bool get hasEnoughCategories => selectedCategories.isNotEmpty;
 }
 
 /// Onboarding state notifier - Riverpod ile durum yönetimi

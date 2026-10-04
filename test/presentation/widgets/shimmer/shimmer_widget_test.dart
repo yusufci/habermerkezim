@@ -23,12 +23,8 @@ void main() {
       // Arrange & Act
       await pumpApp(
         tester,
-        ShimmerWidget(
-          child: Container(
-            key: const Key('shimmer-child'),
-            width: 100,
-            height: 50,
-          ),
+        const ShimmerWidget(
+          child: SizedBox(key: Key('shimmer-child'), width: 100, height: 50),
         ),
       );
 

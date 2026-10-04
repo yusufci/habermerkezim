@@ -6,7 +6,6 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 
 import '../core/utils/app_logger.dart';
 import 'providers/providers.dart';
-import 'providers/auth_provider.dart';
 import 'providers/locale_provider.dart';
 import 'themes/app_theme.dart';
 import 'pages/home/home_page.dart';
@@ -92,8 +91,8 @@ class HaberMerkeziApp extends ConsumerWidget {
           home: appInitialization.when(
             data: (_) {
               // Authentication kontrolü yap - DEVRE DIŞI BIRAKILDI (Açık kaynak için)
-              return _OnboardingCheckWrapper(
-                child: _UpdateCheckWrapper(child: const HomePage()),
+              return const _OnboardingCheckWrapper(
+                child: _UpdateCheckWrapper(child: HomePage()),
               );
             },
             loading: () => const Scaffold(
@@ -378,36 +377,5 @@ class _OnboardingCheckWrapperState
     }
 
     return const OnboardingPage();
-  }
-}
-
-/// Authentication kontrolü wrapper widget'ı
-/// Kullanıcı giriş yapmadıysa Login sayfasına yönlendirir
-class _AuthCheckWrapper extends ConsumerWidget {
-  final Widget child;
-
-  const _AuthCheckWrapper({required this.child});
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final authState = ref.watch(authStateProvider);
-
-    return authState.when(
-      data: (user) {
-        if (user == null) {
-          // Kullanıcı giriş yapmamış, Login sayfasına yönlendir
-          return const LoginPage();
-        }
-        // Kullanıcı giriş yapmış, ana sayfaya devam et
-        return child;
-      },
-      loading: () =>
-          const Scaffold(body: Center(child: CircularProgressIndicator())),
-      error: (error, stackTrace) {
-        AppLogger.error('Auth kontrolü hatası', error, stackTrace);
-        // Hata durumunda Login sayfasına yönlendir
-        return const LoginPage();
-      },
-    );
   }
 }

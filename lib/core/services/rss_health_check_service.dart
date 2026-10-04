@@ -23,8 +23,12 @@ class RssHealthCheckService {
   /// Hızlı kontrol için Dio instance
   final Dio _fastDio = Dio(
     BaseOptions(
-      connectTimeout: Duration(milliseconds: ApiEndpoints.fastConnectTimeoutMs),
-      receiveTimeout: Duration(milliseconds: ApiEndpoints.fastReceiveTimeoutMs),
+      connectTimeout: const Duration(
+        milliseconds: ApiEndpoints.fastConnectTimeoutMs,
+      ),
+      receiveTimeout: const Duration(
+        milliseconds: ApiEndpoints.fastReceiveTimeoutMs,
+      ),
       headers: {
         'User-Agent':
             'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
@@ -36,8 +40,12 @@ class RssHealthCheckService {
   /// Yavaş bağlantılar için Dio instance
   final Dio _slowDio = Dio(
     BaseOptions(
-      connectTimeout: Duration(milliseconds: ApiEndpoints.slowConnectTimeoutMs),
-      receiveTimeout: Duration(milliseconds: ApiEndpoints.slowReceiveTimeoutMs),
+      connectTimeout: const Duration(
+        milliseconds: ApiEndpoints.slowConnectTimeoutMs,
+      ),
+      receiveTimeout: const Duration(
+        milliseconds: ApiEndpoints.slowReceiveTimeoutMs,
+      ),
       headers: {
         'User-Agent':
             'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
