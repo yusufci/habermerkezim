@@ -61,7 +61,7 @@ dependencies:
   pull_to_refresh: ^2.0.0
   
   # Material Design 3 Dynamic Color
-  dynamic_color: ^1.7.0
+  dynamic_color: ^2.1.0
   
   # Utilities
   url_launcher: ^6.2.2
