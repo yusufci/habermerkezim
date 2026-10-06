@@ -71,7 +71,7 @@ dependencies:
   shared_preferences: ^2.5.5
   
   # Typography
-  google_fonts: ^6.1.0
+  google_fonts: ^9.0.0
   
   # Local Notifications
   flutter_local_notifications: ^19.5.0
