@@ -74,7 +74,7 @@ dependencies:
   google_fonts: ^6.1.0
   
   # Local Notifications
-  flutter_local_notifications: ^19.5.0
+  flutter_local_notifications: ^20.1.0
   timezone: ^0.10.1
   
   # Android Widget Support
